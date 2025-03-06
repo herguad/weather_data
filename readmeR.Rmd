@@ -2,6 +2,9 @@
 title: "readme"
 output: html_document
 date: "2025-03-06"
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}
@@ -14,8 +17,8 @@ This is an R Markdown document where I describe and summarize the main points an
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+```{r GlobalWeatherRepository}
+View(GlobalWeatherRepository)
 ```
 
 ## Including Plots
