@@ -1,10 +1,9 @@
 library(tidyverse)
 library(readr)
 library(magrittr)
-setwd("C:\Users\Guadalupe\Documents\IT\R\weather_data")
+setwd("C:/Users/Guadalupe/Documents/IT/R/weather_data")
 
-str(global_w)
+global_w <- read.csv("GlobalWeatherRepository.csv",header=TRUE, sep = ",", fill = TRUE)
 
-names(global_w)
+#View(global_w)
 
-range(global_w$last_updated)
