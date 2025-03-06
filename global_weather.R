@@ -7,3 +7,4 @@ global_w <- read.csv("GlobalWeatherRepository.csv",header=TRUE, sep = ",", fill 
 
 #View(global_w)
 
+str(global_w)
