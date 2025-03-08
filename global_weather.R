@@ -29,8 +29,25 @@ summary(selected_gw) #<- pressure_mb, precip_mm, wind, and uv_index have remarka
 
 #Find outliers and manage data appropriately.
 
+uvi_values <- sort(selected_gw$uv_index) %>%
+  filter(uv_index <= 0)
+
+aqco2_values<- sort(selected_gw$air_quality_Carbon_Monoxide)%>%
+  filter(aqco2_values <= 0)
+
+aqso2_values <- sort(selected_gw$air_quality_Sulphur_dioxide)%>%
+  filter(aqso2_values <= 0)
+
+str(uvi_values)
+str(aqco2_values)
+str(aqso2_values)
+  
+#Remove observations where value of these variables is equal or below 0.
+
+  
 
 #Find and manage null values.
+
 
 #Filter observations made within the same timeframe.
 
