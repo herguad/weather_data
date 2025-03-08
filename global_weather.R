@@ -29,18 +29,19 @@ summary(selected_gw) #<- pressure_mb, precip_mm, wind, and uv_index have remarka
 
 #Find outliers and manage data appropriately.
 
-uvi_values <- sort(selected_gw$uv_index) %>%
-  filter(uv_index <= 0)
-
-aqco2_values<- sort(selected_gw$air_quality_Carbon_Monoxide)%>%
-  filter(aqco2_values <= 0)
-
-aqso2_values <- sort(selected_gw$air_quality_Sulphur_dioxide)%>%
-  filter(aqso2_values <= 0)
+uvi_values <- tibble(selected_gw$uv_index)
+aqco2_values<- tibble(selected_gw$air_quality_Carbon_Monoxide)
+aqso2_values <- tibble(selected_gw$air_quality_Sulphur_dioxide)
 
 str(uvi_values)
 str(aqco2_values)
 str(aqso2_values)
+
+invalid_nums <- bind_cols(uvi_values,aqco2_values,aqso2_values)
+
+str(invalid_nums)
+
+
   
 #Remove observations where value of these variables is equal or below 0.
 
