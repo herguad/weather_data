@@ -26,4 +26,8 @@ str(selected_gw)
 
 #Find outliers and filter data appropriately.
 
-#Select  observations covering the same period of time.
+#Filter observations made within the same timeframe.
+
+#Aggregate and summarize relevant data.
+
+
