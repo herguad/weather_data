@@ -20,11 +20,14 @@ selected_gw <- global_w %>%
 
 str(selected_gw)
 
-#Check type uniformity and consistency. Manage inconsistencies.
+#Check data uniformity and consistency. Manage inconsistencies.
+
+summary(selected_gw)
+
+#Find outliers and manage data appropriately.
+
 
 #Find and manage null values.
-
-#Find outliers and filter data appropriately.
 
 #Filter observations made within the same timeframe.
 
