@@ -42,6 +42,11 @@ colnames(uvi_co2_so2) <- c("UV_index","aqCO2","aqSO2")
 
 #str(uvi_co2_so2)
 
+uv_co2_so2_valid <- uvi_co2_so2 %>%
+  filter(UV_index > 0, aqCO2 > 0, aqSO2 > 0)
+
+str(uv_co2_so2_valid)
+
 
   
 #Remove observations where value of these variables is equal or below 0.
