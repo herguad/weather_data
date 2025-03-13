@@ -70,9 +70,14 @@ str(wind_values)  # <- quick search shows 370-410 is max recorded value (excludi
 filtered_gw <- filtered_gw %>%
   filter(uv_index < 12, pressure_mb < 1086, wind_kph < 400)
 
-str(filtered_gw)
+str(filtered_gw) # <-- 46332 observations (out of the original 56,906)
 
 #Filter observations made within the same timeframe.
+
+#Time data as recorded in last_updated appears as a chr type 
+#so this column should be unified in a convenient time format first.
+
+
 
 #Aggregate and summarize relevant data.
 
