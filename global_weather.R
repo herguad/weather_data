@@ -37,9 +37,10 @@ str(uvi_values)
 str(aqco2_values)
 str(aqso2_values)
 
-invalid_nums <- bind_cols(uvi_values,aqco2_values,aqso2_values)
+uvi_co2_so2 <- bind_cols(uvi_values,aqco2_values,aqso2_values)
+colnames(uvi_co2_so2) <- c("UV_index","aqCO2","aqSO2")
 
-str(invalid_nums)
+#str(uvi_co2_so2)
 
 
   
