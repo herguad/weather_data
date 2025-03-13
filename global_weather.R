@@ -78,7 +78,8 @@ str(filtered_gw) # <-- 46332 observations (out of the original 56,906)
 #so this column should be unified in a convenient time format first.
 
 weather_date <- filtered_gw %>%
-  mutate(last_updated=ymd_hm(last_updated))
+  mutate(last_updated=ymd_hm(last_updated))%>%
+  round_date(last_updated, unit="minute")
 
 str(weather_date)
 
