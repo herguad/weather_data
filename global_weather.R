@@ -47,9 +47,10 @@ uv_co2_so2_valid <- uvi_co2_so2 %>%
 
 str(uv_co2_so2_valid)
 
-
   
 #Remove observations where value of these variables is equal or below 0.
+#Merge filtered specific values df with original selected df by the filtered columns.
+
 
   
 
