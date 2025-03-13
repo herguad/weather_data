@@ -77,7 +77,10 @@ str(filtered_gw) # <-- 46332 observations (out of the original 56,906)
 #Time data as recorded in last_updated appears as a chr type 
 #so this column should be unified in a convenient time format first.
 
+weather_date <- filtered_gw %>%
+  mutate(last_updated=ymd_hm(last_updated))
 
+str(weather_date)
 
 #Aggregate and summarize relevant data.
 
