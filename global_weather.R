@@ -23,7 +23,7 @@ str(selected_gw)
 
 #Check data uniformity and consistency. Manage inconsistencies.
 
-summary(selected_gw) #<- pressure_mb, precip_mm, wind, and uv_index have remarkable max values 
+summary(selected_gw) #<- pressure_mb, wind_kph, and uv_index have remarkable max values 
                      # while air_quality_CO2 and air_quality_SO2 have unusual min values
                      # min uv_index is zero which means no sunlight and should be looked into
 
@@ -55,8 +55,22 @@ filtered_gw <- selected_gw %>%
 str(filtered_gw)
   
 
-#Find and manage null values.
+#Find and manage unusual max values for pressure_mb, wind_kph and uv_index have remarkable max values.
 
+press_values <- tibble(filtered_gw$pressure_mb)
+wind_values<- tibble(filtered_gw$wind_kph)
+
+str(press_values) # <- quick search shows 1085 is max possible value, so values over that could be filtered out.
+str(wind_values)  # <- quick search shows 370-410 is max recorded value (excluding tornadoes) so values over that could be filtered out.
+
+# As regards uv_index quick search shows 11+ is max possible value for human tolerance.
+# However, many spots on the Earth get higher values.
+# I'll just filter those locations with max human tolerance value.
+
+filtered_gw <- filtered_gw %>%
+  filter(uv_index < 12, pressure_mb < 1086, wind_kph < 400)
+
+str(filtered_gw)
 
 #Filter observations made within the same timeframe.
 
