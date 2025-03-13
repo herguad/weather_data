@@ -45,13 +45,14 @@ colnames(uvi_co2_so2) <- c("UV_index","aqCO2","aqSO2")
 uv_co2_so2_valid <- uvi_co2_so2 %>%
   filter(UV_index > 0, aqCO2 > 0, aqSO2 > 0)
 
-str(uv_co2_so2_valid)
+str(uv_co2_so2_valid) # <-- 47,778 observations (out of the original 56,906)
 
-  
-#Remove observations where value of these variables is equal or below 0.
-#Merge filtered specific values df with original selected df by the filtered columns.
+#Remove observations where value of these variables is equal or below 0 from the main df.
 
+filtered_gw <- selected_gw %>%
+  filter(uv_index > 0, air_quality_Carbon_Monoxide > 0, air_quality_Sulphur_dioxide > 0)
 
+str(filtered_gw)
   
 
 #Find and manage null values.
