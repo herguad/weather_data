@@ -81,7 +81,7 @@ weather_date <- filtered_gw %>%
   mutate(last_updated=ymd_hm(last_updated))%>%
   round_date(last_updated, unit="minute")
 
-str(weather_date)
+str(weather_date) #<- check results. OK.
 
 #Aggregate and summarize relevant data.
 
