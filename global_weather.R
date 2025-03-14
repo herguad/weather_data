@@ -90,6 +90,12 @@ weather_locs <- weather_date%>%
   arrange(desc(count))
 
 view(weather_locs)
+
+weather_sel <-weather_locs %>%
+  filter(count ==1) %>%
+  group_by(country)
+
+view(weather_sel)
 #Aggregate and summarize relevant data.
 
 #Plot distribution of relevant variables.
