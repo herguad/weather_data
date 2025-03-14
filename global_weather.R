@@ -78,12 +78,17 @@ str(filtered_gw) # <-- 46332 observations (out of the original 56,906)
 #so this column should be unified in a convenient time format first.
 
 weather_date <- filtered_gw %>%
-  mutate(last_updated=ymd_hm(last_updated))%>%
-  group_by(country)
+  mutate(last_updated=ymd_hm(last_updated))
 
-head(weather_date)
-str(weather_date)
+str(weather_date) #<- check results. OK.
 
+#Group by country and check how many observations there are for each location_name.
+weather_sel <- weather_date%>%
+  group_by(country)%>%
+  distinct(location_name)%>%
+  mutate(count=n())
+
+view(weather_sel)
 #Aggregate and summarize relevant data.
 
 #Plot distribution of relevant variables.
