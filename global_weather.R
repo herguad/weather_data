@@ -79,10 +79,11 @@ str(filtered_gw) # <-- 46332 observations (out of the original 56,906)
 
 weather_date <- filtered_gw %>%
   mutate(last_updated=ymd_hm(last_updated))%>%
-  round_date(last_updated, unit="minute")
+  group_by(country)
 
+head(weather_date)
 str(weather_date)
 
 #Aggregate and summarize relevant data.
 
-
+#Plot distribution of relevant variables.
