@@ -83,12 +83,13 @@ weather_date <- filtered_gw %>%
 str(weather_date) #<- check results. OK.
 
 #Group by country and check how many observations there are for each location_name.
-weather_sel <- weather_date%>%
+weather_locs <- weather_date%>%
   group_by(country)%>%
   distinct(location_name)%>%
-  mutate(count=n())
+  mutate(count=n())%>%
+  arrange(desc(count))
 
-view(weather_sel)
+view(weather_locs)
 #Aggregate and summarize relevant data.
 
 #Plot distribution of relevant variables.
