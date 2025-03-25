@@ -1,6 +1,9 @@
+library(devtools)
 library(tidyverse)
+library(dplyr)
 library(readr)
-library(magrittr)
+library(countries)
+#library(magrittr)
 setwd("C:/Users/Guadalupe/Documents/IT/R/weather_data")
 
 global_w <- read.csv("GlobalWeatherRepository.csv",header=TRUE, sep = ",", fill = TRUE)
@@ -89,13 +92,12 @@ weather_locs <- weather_date%>%
   mutate(count=n())%>%
   arrange(desc(count))
 
-view(weather_locs)
+view(weather_locs) #<- some locations include +1 observation (up to 4) on different times.
 
-weather_sel <-weather_locs %>%
-  filter(count ==1) %>%
-  group_by(country)
+cap_cities <- country_info()$capital
 
-view(weather_sel)
+view(cap_cities)
+
 #Aggregate and summarize relevant data.
 
 #Plot distribution of relevant variables.
