@@ -102,7 +102,7 @@ weather_caps <- weather_date %>%
   filter(location_name %in% cap_cities)%>%
   arrange(location_name)
 
-view(weather_caps)
+view(weather_caps) #<-39,660 observations
 
 #Aggregate and summarize relevant data.
 
