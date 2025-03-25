@@ -96,7 +96,13 @@ view(weather_locs) #<- some locations include +1 observation (up to 4) on differ
 
 cap_cities <- country_info()$capital
 
-view(cap_cities)
+view(cap_cities) #<- array of capital cities
+
+weather_caps <- weather_date %>%
+  filter(location_name %in% cap_cities)%>%
+  arrange(location_name)
+
+view(weather_caps)
 
 #Aggregate and summarize relevant data.
 
