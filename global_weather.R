@@ -113,7 +113,7 @@ capital_w <- weather_caps %>%
   filter(between(m,5,6))%>%
   arrange(country)
 
-view(capital_w) #<- 8007 observations
+#view(capital_w) #<- 7,453 observations
 
 #Count observations per capital city in that period of time.
 
@@ -123,21 +123,21 @@ capital_w_unique <- capital_w%>%
   mutate(count=n())%>%
   arrange(desc(count))
 
-view(capital_w_unique) #<- obs for different capital cities vary between just 1 and 61 in the same period of time
+#view(capital_w_unique) #<- obs for different capital cities vary between just 1 and 47 in the same period of time
 
 #Filter cities with more than the average number of observations in that period of time,
 
 avg_obs_cities <- capital_w_unique %>%
-  filter(count > quantile(capital_w_unique$count,0.5))
+  filter(count > quantile(capital_w_unique$count,0.25))
 
-view(avg_obs_cities) #<- 3640 observations
+#view(avg_obs_cities) #<- 4982 observations
 
 capital_weather <- capital_w%>%
   group_by(location_name,last_updated)%>%
   filter(location_name %in% avg_obs_cities$location_name | last_updated %in% avg_obs_cities$last_updated)%>%
   arrange(country)
 
-view(capital_weather) # <- 6,107 obs
+#view(capital_weather) # <- 7,063 obs
 
 #repeat count of obsv to see discrepancies
 capital_unique <- capital_weather%>%
@@ -151,6 +151,7 @@ capital_unique <- capital_weather%>%
 #-> change months in above filter to only include May through June observations.
 #check final dfs
 view(capital_unique)
+
 #Aggregate and summarize relevant data.
 
 #Plot distribution of relevant variables.
