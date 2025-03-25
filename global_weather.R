@@ -22,7 +22,7 @@ selected_gw <- global_w %>%
   select(country, location_name,last_updated,temperature_celsius,pressure_mb,precip_mm,wind_kph,
          humidity,uv_index,air_quality_Carbon_Monoxide,air_quality_Ozone,air_quality_Nitrogen_dioxide,air_quality_Sulphur_dioxide)
 
-str(selected_gw)
+#str(selected_gw)
 
 #Check data uniformity and consistency. Manage inconsistencies.
 
@@ -48,14 +48,14 @@ colnames(uvi_co2_so2) <- c("UV_index","aqCO2","aqSO2")
 uv_co2_so2_valid <- uvi_co2_so2 %>%
   filter(UV_index > 0, aqCO2 > 0, aqSO2 > 0)
 
-str(uv_co2_so2_valid) # <-- 47,778 observations (out of the original 56,906)
+#str(uv_co2_so2_valid) # <-- 47,778 observations (out of the original 56,906)
 
 #Remove observations where value of these variables is equal or below 0 from the main df.
 
 filtered_gw <- selected_gw %>%
   filter(uv_index > 0, air_quality_Carbon_Monoxide > 0, air_quality_Sulphur_dioxide > 0)
 
-str(filtered_gw)
+#str(filtered_gw)
   
 
 #Find and manage unusual max values for pressure_mb, wind_kph and uv_index have remarkable max values.
@@ -63,8 +63,8 @@ str(filtered_gw)
 press_values <- tibble(filtered_gw$pressure_mb)
 wind_values<- tibble(filtered_gw$wind_kph)
 
-str(press_values) # <- quick search shows 1085 is max possible value, so values over that could be filtered out.
-str(wind_values)  # <- quick search shows 370-410 is max recorded value (excluding tornadoes) so values over that could be filtered out.
+#str(press_values) # <- quick search shows 1085 is max possible value, so values over that could be filtered out.
+#str(wind_values)  # <- quick search shows 370-410 is max recorded value (excluding tornadoes) so values over that could be filtered out.
 
 # As regards uv_index quick search shows 11+ is max possible value for human tolerance.
 # However, many spots on the Earth get higher values.
@@ -73,7 +73,7 @@ str(wind_values)  # <- quick search shows 370-410 is max recorded value (excludi
 filtered_gw <- filtered_gw %>%
   filter(uv_index < 12, pressure_mb < 1086, wind_kph < 400)
 
-str(filtered_gw) # <-- 46332 observations (out of the original 56,906)
+#str(filtered_gw) # <-- 46332 observations (out of the original 56,906)
 
 #Filter observations made within the same timeframe.
 
@@ -151,6 +151,8 @@ capital_unique <- capital_weather%>%
 #-> change months in above filter to only include May through June observations.
 #check final dfs
 view(capital_unique)
+
+summary(capital_unique) #<- check general values on resulting df
 
 #Aggregate and summarize relevant data.
 
