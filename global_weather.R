@@ -106,11 +106,11 @@ weather_caps <- weather_date %>%
 
 #view(weather_caps) #<-39,660 observations
 
-#Filter obs for a specific period of time.
-perio_d <- interval("2024-01-01","2024-06-30")
+#Filter obs for a specific period of time. In this case the months of 
 
 capital_w <- weather_caps %>%
-  filter(last_updated %in% perio_d)%>%
+  mutate(m = month(last_updated))%>%
+  filter(between(m,3,6))%>%
   arrange(country)
 
 view(capital_w)
