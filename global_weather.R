@@ -104,9 +104,16 @@ weather_caps <- weather_date %>%
   filter(location_name %in% cap_cities)%>%
   arrange(location_name)
 
-view(weather_caps) #<-39,660 observations
+#view(weather_caps) #<-39,660 observations
 
-#Filter obs for a specific period of time
+#Filter obs for a specific period of time.
+perio_d <- interval("2024-01-01","2024-06-30")
+
+capital_w <- weather_caps %>%
+  filter(last_updated %in% perio_d)%>%
+  arrange(country)
+
+view(capital_w)
 
 #Aggregate and summarize relevant data.
 
