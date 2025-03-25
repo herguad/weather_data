@@ -92,17 +92,21 @@ weather_locs <- weather_date%>%
   mutate(count=n())%>%
   arrange(desc(count))
 
-view(weather_locs) #<- some locations include +1 observation (up to 4) on different times.
+#view(weather_locs) #<- some locations include +1 observation (up to 4) on different times.
+
+#Use countries package to filter observations only for capital cities.
 
 cap_cities <- country_info()$capital
 
-view(cap_cities) #<- array of capital cities
+#view(cap_cities) #<- array of capital cities
 
 weather_caps <- weather_date %>%
   filter(location_name %in% cap_cities)%>%
   arrange(location_name)
 
 view(weather_caps) #<-39,660 observations
+
+#Filter obs for a specific period of time
 
 #Aggregate and summarize relevant data.
 
