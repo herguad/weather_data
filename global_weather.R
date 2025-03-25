@@ -113,8 +113,24 @@ capital_w <- weather_caps %>%
   filter(between(m,3,6))%>%
   arrange(country)
 
-view(capital_w)
+#view(capital_w) <- 8007 observations
 
+#Count observations per capital city in that period of time.
+
+capital_w_unique <- capital_w%>%
+  group_by(country)%>%
+  distinct(last_updated)%>%
+  mutate(count=n())%>%
+  arrange(desc(count))
+
+#view(capital_w_unique) #<- obs for different capital cities vary between just 1 and 61 in the same period of time
+
+#Filter cities with more than the average number of observations in that period of time,
+
+avg_obs_cities <- capital_w_unique %>%
+  filter(count > quantile(capital_w_unique$count,0.5))
+
+view(avg_obs_cities)
 #Aggregate and summarize relevant data.
 
 #Plot distribution of relevant variables.
