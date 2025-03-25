@@ -150,9 +150,26 @@ capital_unique <- capital_weather%>%
 
 #-> change months in above filter to only include May through June observations.
 #check final dfs
-view(capital_unique)
+#view(capital_unique)
 
-summary(capital_unique) #<- check general values on resulting df
+#summary(capital_unique) #<- check general values on resulting df
+#'count' values show that observations remain with cities with only 1 obs, 
+# Filter df for cities with exactly 47 obs (the median and 3Q values in 'count')
+
+capital_unique <- capital_unique%>%
+  filter(count > 46 & count < 48)
+
+#view(capital_unique) #<- 4982 observations 
+
+capcity_weather <- capital_weather%>%
+  group_by(country,location_name)%>%
+  filter(location_name %in% capital_unique$location_name & last_updated %in% capital_unique$last_updated)%>%
+  arrange(country,location_name)
+
+view(capcity_weather) #<- 4,982 observations
+str(capcity_weather)
+summary(capcity_weather)
+
 
 #Aggregate and summarize relevant data.
 
