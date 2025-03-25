@@ -110,7 +110,7 @@ weather_caps <- weather_date %>%
 
 capital_w <- weather_caps %>%
   mutate(m = month(last_updated))%>%
-  filter(between(m,3,6))%>%
+  filter(between(m,5,6))%>%
   arrange(country)
 
 view(capital_w) #<- 8007 observations
@@ -130,7 +130,7 @@ view(capital_w_unique) #<- obs for different capital cities vary between just 1 
 avg_obs_cities <- capital_w_unique %>%
   filter(count > quantile(capital_w_unique$count,0.5))
 
-#view(avg_obs_cities) #<- 3640 observations
+view(avg_obs_cities) #<- 3640 observations
 
 capital_weather <- capital_w%>%
   group_by(location_name,last_updated)%>%
@@ -146,6 +146,10 @@ capital_unique <- capital_weather%>%
   mutate(count=n())%>%
   arrange(desc(count))
 
+#view(capital_unique) # <- Not as many observations in March and none in April for different cities.
+
+#-> change months in above filter to only include May through June observations.
+#check final dfs
 view(capital_unique)
 #Aggregate and summarize relevant data.
 
