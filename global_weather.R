@@ -137,7 +137,16 @@ capital_weather <- capital_w%>%
   filter(location_name %in% avg_obs_cities$location_name | last_updated %in% avg_obs_cities$last_updated)%>%
   arrange(country)
 
-view(capital_weather)
+view(capital_weather) # <- 6,107 obs
+
+#repeat count of obsv to see discrepancies
+capital_unique <- capital_weather%>%
+  group_by(country,location_name)%>%
+  distinct(last_updated,location_name)%>%
+  mutate(count=n())%>%
+  arrange(desc(count))
+
+view(capital_unique)
 #Aggregate and summarize relevant data.
 
 #Plot distribution of relevant variables.
